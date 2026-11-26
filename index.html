@@ -1,127 +1,214 @@
 <!doctype html><html lang="ru"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Manrope:wght@600;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
 <title>.tron mrkt</title>
 <style>
-:root{--bg:#0e0a14;--s:#1a1424;--s2:#251c33;--red:#ff2a3d;--yel:#ffd23f;--grn:#2fe08a;--blu:#4d8dff;--tx:#fff6ee;--mut:#a89bb8}
-*{box-sizing:border-box;margin:0;font-family:Manrope,sans-serif;font-weight:600;-webkit-tap-highlight-color:transparent}
-body{background:var(--bg);color:var(--tx);padding:14px 14px 120px;min-height:100vh}
-body:before{content:"";position:fixed;inset:-20% -20% auto auto;width:340px;height:340px;background:var(--red);opacity:.16;filter:blur(90px);border-radius:50%;z-index:-1}
-h1,h2,.pill,.tab,.btn,.pr{font-family:'Baloo 2',cursive;font-weight:800}
-.top{display:flex;align-items:center;gap:10px;margin-bottom:16px}
-.coin{width:44px;height:44px;border-radius:15px;background:var(--red);display:grid;place-items:center;font:800 26px 'Baloo 2';box-shadow:0 4px 0 #a3101d;transform:rotate(-6deg)}
-h1{font-size:25px;line-height:1}h1 span{color:var(--red)}
-.pill{margin-left:auto;background:var(--s2);border-radius:999px;padding:7px 14px;font-size:17px;color:var(--yel);box-shadow:0 3px 0 #0006}
-.card{background:var(--s);border-radius:26px;padding:16px;margin-bottom:16px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.gift{background:var(--s);border-radius:26px;padding:7px 7px 10px;transition:transform .15s}.gift:active{transform:scale(.97)}
-.gift .im{position:relative;border-radius:21px;overflow:hidden;aspect-ratio:1}.gift img{width:100%;height:100%;display:block;object-fit:cover;background:var(--s2)}
-.pr{position:absolute;left:8px;bottom:8px;background:#000a;backdrop-filter:blur(6px);border-radius:12px;padding:2px 10px;font-size:16px;color:var(--yel)}
-.gift b{display:block;margin:9px 5px 8px;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.btn{width:100%;border:0;border-radius:16px;padding:10px;font-size:17px;color:#1b0f00;background:var(--grn);box-shadow:0 5px 0 #168a53;cursor:pointer;transition:transform .08s,box-shadow .08s}
-.btn:active{transform:translateY(5px);box-shadow:0 0 0}.btn.b{background:var(--blu);color:#fff;box-shadow:0 5px 0 #2a56b0}.btn.r{background:var(--red);color:#fff;box-shadow:0 5px 0 #a3101d}.btn.y{background:var(--yel);box-shadow:0 5px 0 #b38d00}
-.btn.s{padding:6px 12px;font-size:14px;width:auto;box-shadow:0 3px 0 #0006}
-input{width:100%;border:2px solid var(--s2);border-radius:15px;padding:12px;font-size:16px;background:var(--bg);color:var(--tx);margin-bottom:10px;outline:none}input:focus{border-color:var(--red)}
-.gift small{display:block;margin:-4px 5px 8px;color:var(--mut);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.chips{display:flex;gap:7px;margin-bottom:14px;flex-wrap:wrap}.chip{border-radius:999px;padding:7px 14px;background:var(--s);font-size:14px;font-family:'Baloo 2';font-weight:700}.chip.on{background:var(--red)}
-.k{font-size:26px;padding:4px 10px}
-.nav{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));display:flex;gap:4px;background:#1a1424ee;backdrop-filter:blur(14px);border-radius:28px;padding:6px;box-shadow:0 8px 30px #000a}
-.tab{flex:1;text-align:center;padding:7px 2px;border-radius:21px;font-size:13px;line-height:1.1;color:var(--mut)}.tab i{display:block;font-style:normal;font-size:22px}.tab.on{background:var(--red);color:#fff}
-.row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid var(--s2);font-size:14px}.row:last-child{border:0}
-.st{border-radius:8px;padding:1px 8px;font-size:12px}.active{background:#2fe08a33;color:var(--grn)}.sold{background:#ff2a3d33;color:var(--red)}.pending{background:#ffd23f33;color:var(--yel)}
-.empty{text-align:center;padding:36px 10px;color:var(--mut)}.empty .e{font-size:56px}
-p{color:var(--mut);font-size:14px;margin:6px 0 12px}
-.toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);background:#fff;color:#111;padding:10px 18px;border-radius:16px;z-index:9;max-width:90%;font-weight:800}
-.pop{animation:pop .3s cubic-bezier(.3,1.6,.5,1)}@keyframes pop{from{transform:scale(.9);opacity:0}}
-@media(prefers-reduced-motion:reduce){.pop{animation:none}}
+:root{--bg:#0e1013;--s:#161920;--s2:#1e222b;--ln:#282d38;--tx:#e9ecf1;--mu:#8b93a3;--ac:#ff6b2c;--ok:#45d79b;--bad:#ff5d5d;--r:14px}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{background:var(--bg)}body{font:500 15px/1.4 Onest,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--tx);padding:calc(env(safe-area-inset-top) + 8px) 16px calc(88px + env(safe-area-inset-bottom));min-height:100vh;font-variant-numeric:tabular-nums}
+button,input{font:inherit;color:inherit}
+#sp{position:fixed;inset:0;background:var(--bg);z-index:50;display:grid;place-content:center;justify-items:center;gap:22px;transition:opacity .4s}
+#sp.gone{opacity:0;pointer-events:none}
+#sp b{font-size:34px;font-weight:700;letter-spacing:-.02em;clip-path:inset(0 100% 0 0);animation:rv .7s cubic-bezier(.2,.7,.2,1) forwards}
+#sp b i{font-style:normal;color:var(--ac)}
+#sp .ln{width:120px;height:2px;background:var(--ln);border-radius:2px;overflow:hidden}#sp .ln u{display:block;height:100%;width:8%;background:var(--ac);transition:width .35s}
+@keyframes rv{to{clip-path:inset(0)}}
+header{display:flex;align-items:center;justify-content:space-between;height:48px}
+.logo{font-size:20px;font-weight:700;letter-spacing:-.02em}.logo i{font-style:normal;color:var(--ac)}
+.bal{background:var(--s);border:1px solid var(--ln);border-radius:999px;padding:7px 14px;font-weight:600;font-size:14px;cursor:pointer}
+h2{font-size:20px;font-weight:700;letter-spacing:-.01em;margin:6px 0 12px}h3{font-size:15px;font-weight:600;margin-bottom:4px}
+p,.mu{color:var(--mu);font-size:14px}
+.in{width:100%;background:var(--s);border:1px solid var(--ln);border-radius:var(--r);padding:13px 14px;font-size:16px;outline:none;margin-bottom:10px}.in:focus{border-color:var(--ac)}
+.seg{display:flex;gap:6px;overflow-x:auto;margin:0 -16px 14px;padding:0 16px;scrollbar-width:none}.seg::-webkit-scrollbar{display:none}
+.seg button{flex:none;background:var(--s);border:1px solid var(--ln);border-radius:999px;padding:8px 14px;font-size:14px;font-weight:500;color:var(--mu);cursor:pointer}.seg button.on{background:var(--tx);border-color:var(--tx);color:var(--bg);font-weight:600}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.t{background:var(--s);border:1px solid var(--ln);border-radius:var(--r);overflow:hidden;cursor:pointer;text-align:left;display:block;width:100%;transition:transform .12s}.t:active{transform:scale(.98)}
+.t .im{aspect-ratio:1;background:var(--s2)}.im img{width:100%;height:100%;display:block;object-fit:cover}
+.t .bd{padding:10px 12px 12px}.t .nm{font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.t .sb{font-size:12.5px;color:var(--mu);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:18px}
+.pr{display:flex;align-items:baseline;justify-content:space-between;margin-top:8px;font-weight:700;font-size:16px}.pr small{font-size:12px;font-weight:600}
+.up{color:var(--mu)}.dn{color:var(--ok)}
+.sk{aspect-ratio:.82;border-radius:var(--r);background:var(--s);animation:pl 1.2s ease-in-out infinite}@keyframes pl{50%{opacity:.5}}
+.btn{width:100%;background:var(--ac);color:#1a0b02;border:0;border-radius:var(--r);padding:15px;font-weight:700;font-size:16px;cursor:pointer;transition:transform .1s,opacity .15s}.btn:active{transform:scale(.98)}.btn:disabled{opacity:.5}
+.btn.g{background:var(--s2);color:var(--tx);border:1px solid var(--ln)}.btn.s{width:auto;padding:8px 14px;font-size:14px}
+.card{background:var(--s);border:1px solid var(--ln);border-radius:var(--r);padding:16px;margin-bottom:12px}
+.row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--ln);font-size:14.5px}.row:last-child{border:0}.row span:first-child{color:var(--mu)}.row b{font-weight:600;text-align:right}
+.tag{font-size:12px;font-weight:600;padding:3px 8px;border-radius:7px;background:var(--s2);color:var(--mu)}.tag.a{background:#ff6b2c26;color:var(--ac)}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:#0e1013f2;backdrop-filter:blur(16px);border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom)}
+nav button{flex:1;background:none;border:0;padding:15px 4px;font-size:14px;font-weight:600;color:var(--mu);cursor:pointer;position:relative}nav button.on{color:var(--tx)}nav button.on:after{content:"";position:absolute;top:-1px;left:30%;right:30%;height:2px;background:var(--ac)}
+#sh{position:fixed;inset:0;z-index:20;display:none}#sh.on{display:block}
+#sh .bk{position:absolute;inset:0;background:#000a}#sh .pn{position:absolute;left:0;right:0;bottom:0;max-height:92vh;overflow:auto;background:var(--bg);border-top:1px solid var(--ln);border-radius:20px 20px 0 0;padding:16px 16px calc(20px + env(safe-area-inset-bottom));animation:up .28s cubic-bezier(.2,.8,.2,1)}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+.big{width:62%;margin:0 auto 14px;border-radius:var(--r);overflow:hidden;aspect-ratio:1;background:var(--s2)}
+.toast{position:fixed;top:calc(env(safe-area-inset-top) + 12px);left:16px;right:16px;z-index:60;background:var(--tx);color:var(--bg);padding:12px 16px;border-radius:var(--r);font-weight:600;text-align:center}
+.lg{display:inline-flex;border:1px solid var(--ln);border-radius:999px;padding:3px;gap:2px;background:var(--s)}.lg button{border:0;background:none;border-radius:999px;padding:7px 14px;font-size:14px;font-weight:600;color:var(--mu);cursor:pointer}.lg button.on{background:var(--tx);color:var(--bg)}
+.pr em{font-style:normal;font-size:12px;font-weight:500;color:var(--mu);display:block}.sub{font-size:12px;font-weight:500;color:var(--mu);font-variant-numeric:tabular-nums}
+.empty{text-align:center;padding:48px 8px}
+.fl{position:absolute;inset:0}#sp{overflow:hidden}#sp b,#sp .ln{position:relative;z-index:1}
+#sp .fl img{position:absolute;width:76px;height:76px;border-radius:18px;opacity:0;animation:dr .85s cubic-bezier(.3,1.4,.5,1) forwards,bob 3s ease-in-out infinite}
+@keyframes dr{from{transform:translateY(-70vh) rotate(-25deg);opacity:0}30%{opacity:1}to{transform:none;opacity:1}}@keyframes bob{50%{transform:translateY(-9px) rotate(2deg)}}
+.t.in{animation:ti .5s cubic-bezier(.3,1.3,.5,1) backwards}@keyframes ti{from{opacity:0;transform:translateY(22px) scale(.9) rotate(-1.5deg)}}
+.big{animation:gi .7s cubic-bezier(.3,1.5,.5,1),fl2 3.6s .7s ease-in-out infinite}@keyframes gi{from{transform:scale(.5) rotate(-14deg);opacity:0}}@keyframes fl2{50%{transform:translateY(-6px) rotate(1.2deg)}}
+.eg{width:96px;height:96px;border-radius:22px;margin-bottom:14px;animation:fl2 3s ease-in-out infinite}
+.cel{position:fixed;inset:0;z-index:70;display:grid;place-items:center;background:#000b;animation:fo .3s 1s forwards}.cel img{width:150px;border-radius:20px;animation:fy 1.15s cubic-bezier(.5,0,.3,1) forwards}
+.cel i{position:absolute;width:9px;height:9px;border-radius:50%;opacity:0;animation:bs .85s .15s ease-out forwards}
+@keyframes fy{0%{transform:scale(.3) rotate(-14deg);opacity:0}30%{transform:scale(1.12) rotate(4deg);opacity:1}60%{transform:scale(1) rotate(0)}100%{transform:translate(32vw,38vh) scale(.15);opacity:0}}
+@keyframes bs{0%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(var(--x),var(--y)) scale(.3)}}@keyframes fo{to{opacity:0}}
+.lk{display:block;margin:16px auto 0;background:none;border:0;color:var(--mu);font-size:14px;text-decoration:underline;cursor:pointer}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}#sp b{clip-path:none}}
 </style></head><body>
-<div class="top"><div class="coin">T</div><h1>.tron <span>mrkt</span></h1><div class="pill" id="bal">…</div></div>
-<div id="v"></div><div class="nav" id="nav"></div>
+<div id="sp"><div class="fl" id="fl"></div><b><i>.</i>tron mrkt</b><div class="ln"><u id="pg"></u></div></div>
+<header><div class="logo"><i>.</i>tron mrkt</div><button class="bal" id="bal" onclick="go('me')"></button></header>
+<main id="v"></main><nav id="nav"></nav><div id="sh"><div class="bk" onclick="closeSh()"></div><div class="pn" id="pn"></div></div>
 <script>
-const tg=window.Telegram?.WebApp||{initData:"",ready(){},expand(){},openLink:u=>open(u)};tg.ready();tg.expand();
+const tg=window.Telegram?.WebApp||{initData:"",ready(){},expand(){},openLink:u=>open(u)};tg.ready();tg.expand();try{tg.setHeaderColor("#0e1013");tg.setBackgroundColor("#0e1013")}catch(e){}
 const qs=new URLSearchParams(location.search);if(qs.get("api"))try{localStorage.api=qs.get("api")}catch(e){}
-const API=(qs.get("api")||(()=>{try{return localStorage.api}catch(e){}})()||window.API_URL||location.origin).replace(/\/$/,"");
-const NAMES=['Santa Hat', 'Signet Ring', 'Precious Peach', 'Plush Pepe', 'Spiced Wine', 'Jelly Bunny', "Durov's Cap", 'Perfume Bottle', 'Eternal Rose', 'Berry Box', 'Vintage Cigar', 'Magic Potion', 'Kissed Frog', 'Hex Pot', 'Evil Eye', 'Sharp Tongue', 'Trapped Heart', 'Skull Flower', 'Scared Cat', 'Spy Agaric', 'Homemade Cake', 'Genie Lamp', 'Lunar Snake', 'Party Sparkler', 'Jester Hat', 'Witch Hat', 'Hanging Star', 'Love Candle', 'Cookie Heart', 'Desk Calendar', 'Jingle Bells', 'Snow Mittens', 'Voodoo Doll', 'Mad Pumpkin', 'Hypno Lollipop', 'B-Day Candle', 'Bunny Muffin', 'Astral Shard', 'Flying Broom', 'Crystal Ball', 'Eternal Candle', 'Swiss Watch', 'Ginger Cookie', 'Mini Oscar', 'Lol Pop', 'Ion Gem', 'Star Notepad', 'Loot Bag', 'Love Potion', 'Toy Bear', 'Diamond Ring', 'Sakura Flower', 'Sleigh Bell', 'Top Hat', 'Record Player', 'Winter Wreath', 'Snow Globe', 'Electric Skull', 'Tama Gadget', 'Candy Cane', 'Neko Helmet', 'Jack-in-the-Box', 'Easter Egg', 'Bonded Ring', 'Pet Snake', 'Snake Box', 'Xmas Stocking', 'Big Year', 'Holiday Drink', 'Gem Signet', 'Light Sword', 'Restless Jar', 'Nail Bracelet', 'Heroic Helmet', 'Bow Tie', 'Heart Locket', 'Lush Bouquet', 'Whip Cupcake', 'Joyful Bundle', 'Cupid Charm', 'Valentine Box', 'Snoop Dogg', 'Swag Bag', 'Snoop Cigar', 'Low Rider', 'Westside Sign', 'Stellar Rocket', 'Jolly Chimp', 'Moon Pendant', 'Ionic Dryer', 'Input Key', 'Mighty Arm', 'Artisan Brick', 'Clover Pin', 'Sky Stilettos', 'Fresh Socks', 'Happy Brownie', 'Ice Cream', 'Spring Basket', 'Instant Ramen', 'Faith Amulet', 'Mousse Cake', 'Bling Binky', 'Money Pot', 'Pretty Posy', "Khabib's Papakha", 'UFC Strike'];
-const slug=n=>n.toLowerCase().replace(/[^a-z0-9]/g,""),CN=Object.fromEntries(NAMES.map(n=>[slug(n),n]));
-const R=`market|Маркет|Market|Маркет|Маркет|市场
-mine|Мои|Mine|Менікі|Мої|我的
-me|Профиль|Profile|Профиль|Профіль|资料
-admin|Админ|Admin|Админ|Адмін|管理
-buy|Купить|Buy|Сатып алу|Купити|购买
-new|Новые|New|Жаңа|Нові|最新
-cheap|Дешевле|Cheaper|Арзан|Дешевше|低价
-pricey|Дороже|Pricier|Қымбат|Дорожче|高价
-empty|Пока пусто|Nothing here yet|Әзірге бос|Поки порожньо|暂无商品
-sell|Выставить подарок|List a gift|Сыйлық шығару|Виставити подарунок|上架礼物
-sellhint|Передайте подарок @S, выберите картинку и цену. После проверки лот появится в маркете|Send the gift to @S, pick a picture and price. The lot goes live after review|Сыйлықты @S аккаунтына беріңіз, сурет пен бағаны таңдаңыз. Тексерістен кейін лот маркетте шығады|Передайте подарунок @S, оберіть картинку й ціну. Після перевірки лот з'явиться в маркеті|请把礼物转给 @S，选择图片和价格，审核后上架
-mylots|Мои лоты|My lots|Менің лоттарым|Мої лоти|我的商品
-bought|Покупки|Purchases|Сатып алғандар|Покупки|已购
-topup|Пополнить через Tonkeeper|Top up with Tonkeeper|Tonkeeper арқылы толтыру|Поповнити через Tonkeeper|通过 Tonkeeper 充值
-topuphint|Откроется Tonkeeper, бот пришлёт кнопку проверки|Tonkeeper opens, the bot sends a check button|Tonkeeper ашылады, бот тексеру батырмасын жібереді|Відкриється Tonkeeper, бот надішле кнопку перевірки|将打开 Tonkeeper，机器人会发送检查按钮
-wd|Запросить вывод|Request withdrawal|Шығаруды сұрау|Запросити виведення|申请提现
-wdhint|Вручную через поддержку. Рубли: @S|Manual via support. RUB: @S|Қолдау арқылы қолмен. Рубль: @S|Вручну через підтримку. Рублі: @S|由客服手动处理。卢布：@S
-amount|Сумма TON|Amount TON|Сома TON|Сума TON|TON 数量
-bank|Банк, карта / телефон|Bank, card / phone|Банк, карта / телефон|Банк, картка / телефон|银行、卡号/手机号
-done|Готово|Done|Дайын|Готово|完成
-confirm|Купить за|Buy for|Сатып алу:|Купити за|购买价格
-title|Название|Title|Атауы|Назва|名称
-price|Цена в TON|Price in TON|Бағасы TON|Ціна в TON|价格 TON
-custom|Своя картинка (https)|Own picture (https)|Өз суретіңіз (https)|Своя картинка (https)|自定义图片 (https)
-lang|Язык|Language|Тіл|Мова|语言
-open|Откройте через бота|Open via the bot|Бот арқылы ашыңыз|Відкрийте через бота|请通过机器人打开`;
-const I={};R.split("\n").forEach(l=>{const[k,...v]=l.split("|");["ru","en","kk","uk","zh"].forEach((g,i)=>(I[g]??={})[k]=v[i])});
-let me={},tab="market",sort="new",lg="ru",pick="star",kinds=new Set();
-const t=k=>(I[lg]||I.ru)[k].replace("@S","@"+(me.support||"")),$=id=>document.getElementById(id),v=h=>$("v").innerHTML=h;
-const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const PH="data:image/svg+xml,"+encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect width='200' height='200' fill='#251c33'/><text x='100' y='128' font-size='84' text-anchor='middle'>🎁</text></svg>");
-const pic=i=>i.startsWith("/")?API+i:i.startsWith("n:")?"https://nft.fragment.com/gift/"+i.slice(2)+".medium.jpg":esc(i);
-function ierr(e){const s=(e.dataset.s||"").replace(/-\d+$/,"");if(s&&!e.dataset.f){e.dataset.f=1;e.src="https://fragment.com/file/gifts/"+s+"/thumb.webp"}else e.src=PH}
-const im=l=>`<img src="${pic(l.image)}" data-s="${l.image.startsWith("n:")?l.image.slice(2):""}" onerror="ierr(this)" loading="lazy" alt="">`;
-function demo(p){if(p=="/api/me")return{id:1,username:"demo",balance:12.5,spent:0,admin:true,support:"mrktbanksupports",lang:"ru"};
- if(p.startsWith("/api/listings"))return NAMES.slice(0,30).map((n,i)=>({id:i+1,title:n+" #"+(i*7+1),image:"n:"+slug(n)+"-"+(i*7+1),price:+(2.5+i*1.7).toFixed(1)}));
- if(p=="/api/my")return{selling:[],bought:[]};if(p=="/api/admin")return{stats:{users:3},listings:[],withdrawals:[],sync:{items:0,models:0}};if(p=="/api/models")return[];throw"Demo mode"}
-async function api(p,b){if(!tg.initData)return demo(p);const r=await fetch(API+p,{method:b?"POST":"GET",headers:{"Content-Type":"application/json","X-Init":tg.initData},body:b?JSON.stringify(b):undefined});const j=await r.json().catch(()=>({}));if(!r.ok)throw(typeof j.detail==="string"?j.detail:"Error");return j}
-function toast(x){const d=document.createElement("div");d.className="toast pop";d.textContent=x;document.body.append(d);setTimeout(()=>d.remove(),2600)}
-async function go(x){tab=x||tab;try{me=await api("/api/me")}catch(e){return v(`<div class="card empty"><div class="e">🔒</div><h2>${t("open")}</h2></div>`)}
- lg=I[me.lang]?me.lang:(I[(tg.initDataUnsafe?.user?.language_code||"").slice(0,2)]?(tg.initDataUnsafe.user.language_code.slice(0,2)):"ru");
- $("bal").textContent="💎 "+(+me.balance).toFixed(2);
- const T=[["market","🛍"],["mine","🎁"],["me","😎"]];if(me.admin)T.push(["admin","🛠"]);
- $("nav").innerHTML=T.map(x=>`<div class="tab ${tab==x[0]?"on":""}" onclick="go('${x[0]}')"><i>${x[1]}</i>${t(x[0])}</div>`).join("");
- try{await({market,mine,me:profile,admin,models}[tab])()}catch(e){toast(e)}}
-let LST=[];
-async function market(){LST=await api("/api/listings?sort="+sort);
- v(`<input id="q" placeholder="🔍 Plush Pepe, Snoop Dogg…" oninput="fq()"><div class="chips">${[["new","new"],["asc","cheap"],["desc","pricey"]].map(s=>`<div class="chip ${sort==s[0]?"on":""}" onclick="sort='${s[0]}';go()">${t(s[1])}</div>`).join("")}<div class="chip" onclick="go('models')">🎨</div></div><div id="g"></div>`);fq()}
-function fq(){const s=($("q").value||"").toLowerCase(),L=LST.filter(l=>(l.title+" "+(l.model||"")+" "+(l.backdrop||"")).toLowerCase().includes(s));
- $("g").innerHTML=L.length?`<div class="grid">${L.map(l=>`<div class="gift pop"><div class="im">${im(l)}<div class="pr">${l.price} TON</div></div><b>${esc(l.title)}</b><small>${esc(l.model||"")}${l.backdrop?" · "+esc(l.backdrop):""}</small><button class="btn" onclick="buy(${l.id},${l.price})">${t("buy")}</button></div>`).join("")}</div>`:`<div class="empty"><div class="e">🦖</div><h2>${t("empty")}</h2></div>`}
-async function buy(id,p){if(!confirm(t("confirm")+" "+p+" TON?"))return;try{await api("/api/buy/"+id,{});toast(t("done")+" ✅");tg.HapticFeedback?.notificationOccurred("success");go()}catch(e){toast(e)}}
-async function mine(){const m=await api("/api/my");
- v(`<div class="card pop"><h2>${t("sell")}</h2><p>${t("sellhint")}</p>
- <input id="c" list="cl" placeholder="${t("title")}: Plush Pepe"><datalist id="cl">${NAMES.map(n=>`<option value="${n}">`).join("")}</datalist>
- <input id="nn" type="number" placeholder="#"><input id="i" placeholder="${t("custom")}"><input id="p" type="number" step="0.1" placeholder="${t("price")}"><button class="btn" onclick="add()">${t("sell")}</button></div>
- <div class="card"><h2>${t("mylots")}</h2>${m.selling.map(l=>`<div class="row"><span style="display:flex;gap:8px;align-items:center"><span style="width:34px">${im(l)}</span>${esc(l.title)} · ${l.price}</span><span class="st ${l.status}">${l.status}</span></div>`).join("")||`<p>—</p>`}</div>
- <div class="card"><h2>${t("bought")}</h2>${m.bought.map(l=>`<div class="row"><span>${esc(l.title)}</span><span>${l.price} TON</span></div>`).join("")||`<p>—</p>`}</div>`)}
-async function add(){try{const n=$("c").value.trim(),s=slug(n),num=+$("nn").value;let img=$("i").value;if(!img){if(!CN[s]||!num)throw"Collection + #";img="n:"+s+"-"+num}
- await api("/api/listings",{title:(CN[s]||n)+(num?" #"+num:""),image:img,price:+$("p").value});toast(t("done")+" ✅");go()}catch(e){toast(e)}}
-async function profile(){v(`<div class="card pop"><h2>@${esc(me.username||me.id)}</h2><p>💎 ${(+me.balance).toFixed(2)} TON</p>
- <div class="chips">${[["ru","🇷🇺"],["en","🇬🇧"],["kk","🇰🇿"],["uk","🇺🇦"],["zh","🇨🇳"]].map(x=>`<div class="chip ${lg==x[0]?"on":""}" onclick="setl('${x[0]}')">${x[1]}</div>`).join("")}</div></div>
- <div class="card"><h2>${t("topup")}</h2><p>${t("topuphint")}</p><input id="a" type="number" step="0.5" value="5"><button class="btn b" onclick="dep()">${t("topup")}</button></div>
- <div class="card"><h2>${t("wd")}</h2><p>${t("wdhint")}</p><input id="wa" type="number" step="0.1" placeholder="${t("amount")}"><input id="wd" placeholder="${t("bank")}"><button class="btn y" onclick="wd()">${t("wd")}</button></div>`)}
-async function setl(l){await api("/api/lang",{lang:l});go()}
-async function dep(){try{const r=await api("/api/deposit",{amount:+$("a").value});tg.openLink(r.link);toast("OK ✅")}catch(e){toast(e)}}
-async function wd(){try{await api("/api/withdraw",{amount:+$("wa").value,details:$("wd").value});toast(t("done")+" ✅");go()}catch(e){toast(e)}}
-async function admin(){const a=await api("/api/admin"),s=a.stats;
- v(`<div class="card pop"><h2>🧪 Тест-лоты</h2><p>Коллекции через запятую (пусто = все). Цены по тирам редкости, либо задайте диапазон.</p>
- <input id="ks" placeholder="Plush Pepe, Toy Bear, Snoop Dogg"><input id="n" type="number" value="100"><div style="display:flex;gap:8px"><input id="p1" type="number" placeholder="Цена от"><input id="p2" type="number" placeholder="до"></div>
- <button class="btn" onclick="seed()">Создать пачку</button><div style="height:10px"></div><button class="btn r" onclick="clr()">Убрать все активные тест-лоты</button></div>
- <div class="card"><h2>🎨 Картинки с Fragment</h2><p>В базе: ${a.sync.items} подарков, ${a.sync.models} моделей. ${a.sync.running?`Идёт загрузка ${a.sync.done}/${a.sync.total}…`:""}</p><input id="sp" type="number" value="10" placeholder="Подарков на коллекцию"><button class="btn b" onclick="syn()">Скачать модели и подарки</button></div>
- <div class="card"><h2>Статистика</h2>${Object.entries(s).map(([k,x])=>`<div class="row"><span>${k}</span><b>${+(+x).toFixed(2)}</b></div>`).join("")}</div>
- <div class="card"><h2>Лоты (последние 150)</h2>${a.listings.map(l=>`<div class="row"><span style="display:flex;gap:8px;align-items:center"><span style="width:34px;border-radius:9px;overflow:hidden">${im(l)}</span>${esc(l.title)} · ${l.price}</span><span style="display:flex;gap:6px;align-items:center"><span class="st ${l.status}">${l.status}</span>${l.status=="pending"?`<button class="btn s" onclick="ap(${l.id})">✓</button>`:""}${l.status!="sold"?`<button class="btn s r" onclick="dl(${l.id})">✕</button>`:""}</span></div>`).join("")||"<p>—</p>"}</div>
- <div class="card"><h2>Выводы</h2>${a.withdrawals.map(w=>`<div class="row"><span>#${w.id} ${w.amount} TON<br><small>${esc(w.details)}</small></span><button class="btn s b" onclick="pd(${w.id})">Выплачено</button></div>`).join("")||"<p>—</p>"}</div>`)}
-const syn=()=>act("/api/admin/sync",{per:+$("sp").value||10});
+const API=(qs.get("api")||(()=>{try{return localStorage.api}catch(e){}})()||location.origin).replace(/\/$/,""),DEMO=!tg.initData;
+const $=i=>document.getElementById(i),v=h=>$("v").innerHTML=h,esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const pg=n=>$("pg").style.width=n+"%";
+const f=n=>{n=+n;return n>=1000?Math.round(n).toLocaleString("ru"):+n.toFixed(n<10?2:1)+""};
+const R=`Маркет|Market|Нарық|Маркет|市场
+Инвентарь|Inventory|Қойма|Інвентар|库存
+Профиль|Profile|Профиль|Профіль|资料
+Коллекция, модель, фон|Collection, model, backdrop|Коллекция, модель, фон|Колекція, модель, фон|收藏、模型、背景
+Новые|New|Жаңа|Нові|最新
+Дешевле|Cheaper|Арзан|Дешевше|低价
+Дороже|Pricier|Қымбат|Дорожче|高价
+Ниже рынка|Below market|Нарықтан төмен|Нижче ринку|低于市价
+Ничего не найдено|Nothing found|Ештеңе табылмады|Нічого не знайдено|没有结果
+Измените запрос или сортировку.|Change the query or sorting.|Сұранысты немесе сұрыптауды өзгертіңіз.|Змініть запит або сортування.|请更改搜索或排序。
+Модель|Model|Модель|Модель|模型
+Фон|Backdrop|Фон|Фон|背景
+Символ|Symbol|Символ|Символ|图案
+Рыночная цена|Market price|Нарық бағасы|Ринкова ціна|市场价
+Цена|Price|Баға|Ціна|价格
+Ваш баланс|Your balance|Балансыңыз|Ваш баланс|您的余额
+Снять с продажи|Remove from sale|Сатылымнан алу|Зняти з продажу|下架
+Пополнить баланс|Top up balance|Балансты толтыру|Поповнити баланс|充值余额
+Купить за|Buy for|Сатып алу:|Купити за|购买价格
+Куплено. Подарок в вашем инвентаре|Purchased. The gift is in your inventory|Сатып алынды. Сыйлық қоймаңызда|Куплено. Подарунок у вашому інвентарі|购买成功，礼物已进入库存
+Здесь пока пусто|Nothing here yet|Әзірге бос|Тут поки порожньо|暂无内容
+Подарки, которые вы отправили на маркет или купили, появятся здесь.|Gifts you sent to the market or bought will appear here.|Маркетке жіберген немесе сатып алған сыйлықтар осында шығады.|Подарунки, які ви надіслали на маркет або купили, з'являться тут.|您发送到市场或购买的礼物会显示在这里。
+У вас|Owned|Сізде|У вас|持有
+В продаже|For sale|Сатылымда|У продажу|在售
+Вывод|Withdrawal|Шығару|Виведення|提取
+флор|floor|флор|флор|地板价
+Выставить на продажу|List for sale|Сатылымға шығару|Виставити на продаж|上架出售
+Вывести подарок|Withdraw gift|Сыйлықты шығару|Вивести подарунок|提取礼物
+Цена в|Price in|Баға, |Ціна в|价格，
+Вы получите|You receive|Сіз аласыз|Ви отримаєте|您将收到
+после комиссии|after fee|комиссиядан кейін|після комісії|扣除手续费后
+Заявка на вывод создана|Withdrawal request created|Шығару өтінімі жасалды|Заявку на виведення створено|提取申请已创建
+Выставлено в маркет|Listed on the market|Маркетке шығарылды|Виставлено на маркет|已上架
+Снято с продажи|Removed from sale|Сатылымнан алынды|Знято з продажу|已下架
+Баланс|Balance|Баланс|Баланс|余额
+Потрачено|Spent|Жұмсалды|Витрачено|已花费
+Пополнить|Top up|Толтыру|Поповнити|充值
+Откроется Tonkeeper, зачисление придёт автоматически.|Tonkeeper will open, the deposit arrives automatically.|Tonkeeper ашылады, толтыру автоматты түрде түседі.|Відкриється Tonkeeper, зарахування надійде автоматично.|将打开 Tonkeeper，到账自动完成。
+Вывести средства|Withdraw funds|Қаражатты шығару|Вивести кошти|提现
+Оставьте заявку, выплата придёт на указанные реквизиты.|Leave a request, the payout goes to the details you give.|Өтінім қалдырыңыз, төлем көрсетілген деректемелерге түседі.|Залиште заявку, виплата надійде на вказані реквізити.|提交申请，款项将发送到您填写的账户。
+Сумма|Amount|Сома|Сума|金额
+Кошелёк или карта|Wallet or card|Әмиян немесе карта|Гаманець або картка|钱包或银行卡
+Оставить заявку|Submit request|Өтінім қалдыру|Залишити заявку|提交申请
+Язык|Language|Тіл|Мова|语言
+Откройте через бота|Open via the bot|Бот арқылы ашыңыз|Відкрийте через бота|请通过机器人打开
+Мини-апп работает только внутри Telegram.|The mini app works only inside Telegram.|Мини-апп тек Telegram ішінде жұмыс істейді.|Міні-застосунок працює лише в Telegram.|小程序仅可在 Telegram 内使用。`;
+const LG=["ru","en","kk","uk","zh"],I={};R.split("\n").forEach(l=>{const a=l.split("|");LG.forEach((g,i)=>(I[g]??={})[a[0]]=a[i])});
+let lg="ru";const t=s=>I[lg]?.[s]||s;
+let me={},F={},tab="market",sort="new",LST=[],INV=[],cur="GRAM";
+const PH="data:image/svg+xml,"+encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='#1e222b'/></svg>");
+const GL={heart:"<path d='M100 152C60 122 50 98 50 80a25 25 0 0 1 50-6 25 25 0 0 1 50 6c0 18-10 42-50 72z'/>",
+hat:"<path d='M52 130h96l-10-44a38 38 0 0 0-76 0z'/><rect x='44' y='130' width='112' height='14' rx='7'/>",
+ring:"<circle cx='100' cy='114' r='32' fill='none' stroke='currentColor' stroke-width='14'/><path d='M100 60l17 20H83z'/>",
+cup:"<path d='M64 56h72v38a36 36 0 0 1-72 0z'/><rect x='92' y='126' width='16' height='20'/><rect x='72' y='146' width='56' height='10' rx='5'/>",
+bag:"<path d='M64 94h72l10 62H54z'/><path d='M80 94a20 20 0 0 1 40 0' fill='none' stroke='currentColor' stroke-width='10'/>",
+bell:"<path d='M100 54a36 36 0 0 0-36 36v30l-12 14h96l-12-14V90a36 36 0 0 0-36-36z'/><circle cx='100' cy='150' r='9'/>",
+gem:"<path d='M64 84l20-26h32l20 26-36 74z'/>",
+cone:"<path d='M72 94h56l-28 64z'/><circle cx='100' cy='78' r='28'/>",
+face:"<circle cx='64' cy='68' r='16'/><circle cx='136' cy='68' r='16'/><circle cx='100' cy='108' r='46'/><circle cx='84' cy='102' r='6' fill='#000a'/><circle cx='116' cy='102' r='6' fill='#000a'/>",
+box:"<rect x='56' y='88' width='88' height='68' rx='6'/><rect x='48' y='70' width='104' height='22' rx='5'/><rect x='94' y='70' width='12' height='86' fill='#0004'/>"};
+const gk=n=>/heart|love|valentine|cupid|locket|kiss/i.test(n)?"heart":/hat|cap|helmet|papakha/i.test(n)?"hat":/ring|signet|bracelet/i.test(n)?"ring":/cup|medal|oscar|pot|jar|wine|drink|potion|lamp|bottle/i.test(n)?"cup":/bag|box|pack|basket|stocking|socks|bundle|brick/i.test(n)?"bag":/bell|candle|star|flame/i.test(n)?"bell":/gem|shard|diamond|crystal|ball/i.test(n)?"gem":/cream|cake|lol|pop|cookie|muffin|candy|brownie|ramen/i.test(n)?"cone":/pepe|bear|dogg|dog|cat|bunny|frog|chimp|bird|snake|skull|doll|eye/i.test(n)?"face":"box";
+const art=g=>{let h=0;for(const c of g.slug)h=(h*31+c.charCodeAt(0))%360;const nm=F[g.slug]?.name||g.title.replace(/ #\d+$/,""),c=`hsl(${h} 70% 82%)`;
+ let d="";for(let i=0;i<16;i++)d+=`<circle cx='${(i*67+h)%190+5}' cy='${(i*41+h*3)%190+5}' r='${3+i%3*2}' fill='hsl(${h} 50% 60%)' opacity='.18'/>`;
+ return"data:image/svg+xml,"+encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect width='200' height='200' fill='hsl(${h} 34% 21%)'/>${d}<ellipse cx='100' cy='160' rx='44' ry='8' fill='#0006'/><g fill='${c}'>${GL[gk(nm)].replaceAll("currentColor",c)}</g><text x='100' y='184' font-family='Onest,sans-serif' font-weight='700' font-size='14' fill='#fff' text-anchor='middle'>${nm.replace(/&/g,"&amp;")}</text>${g.num?`<text x='12' y='24' font-family='Onest,sans-serif' font-weight='700' font-size='15' fill='#ffffffaa'>#${g.num}</text>`:""}</svg>`)};
+function fly(){const S=[["Plush Pepe",8,14,0],["Heart Locket",70,9,.12],["Durov's Cap",76,62,.24],["Toy Bear",5,62,.36],["Loot Bag",40,80,.48],["Snoop Dogg",42,5,.6]];
+ $("fl").innerHTML=S.map(([n,x,y,d],i)=>`<img src="${art({slug:sl(n),num:100+i*37,title:n})}" style="left:${x}%;top:${y}%;animation-delay:${d}s,${d+.95}s" alt="">`).join("")}
+const emp=(a,b)=>`<div class="empty"><img class="eg" src="${art({slug:"giftbox",num:"",title:"Gift"})}" alt=""><h2>${t(a)}</h2><p>${t(b)}</p></div>`;
+function celebrate(g){const d=document.createElement("div");d.className="cel";d.innerHTML=`<img src="${pic(g)}" alt="">`+Array.from({length:18},(_,i)=>{const a=i/18*6.283,r=95+(i%3)*32;return`<i style="--x:${Math.cos(a)*r|0}px;--y:${Math.sin(a)*r|0}px;background:hsl(${i*20} 80% 64%)"></i>`}).join("");document.body.append(d);setTimeout(()=>d.remove(),1300)}
+let ANIM=0;
+const pic=g=>DEMO?art(g):g.image.startsWith("/")?API+g.image:g.image.startsWith("n:")?"https://nft.fragment.com/gift/"+g.image.slice(2)+".medium.jpg":esc(g.image);
+const im=g=>`<img src="${pic(g)}" onerror="this.onerror=null;this.src=PH" loading="lazy" alt="${esc(g.title)}">`;
+const fl=g=>F[g.slug]?.floor||0,usd=n=>f(n*(me.usd||.94));
+const dl=g=>{const x=fl(g);if(!x||!g.price)return"";const d=Math.round((g.price/x-1)*100);return d<0?`<small class="dn">${d}%</small>`:""};
+/* ---- demo: рабочая песочница без Telegram, все действия живут в памяти ---- */
+const DF="Plush Pepe:7048,Heart Locket:1578,Durov's Cap:424.1,Precious Peach:303,Scared Cat:283.8,Heroic Helmet:200,Loot Bag:149.4,Westside Sign:146,Perfume Bottle:90.5,Magic Potion:71.8,Swiss Watch:69.4,Kissed Frog:56.6,Toy Bear:41.2,Genie Lamp:39.2,Eternal Rose:33,Cupid Charm:26.4,Crystal Ball:15.1,Top Hat:11.1,Evil Eye:9.63,Santa Hat:9.04,Snoop Dogg:6.81,Desk Calendar:6.42,Lol Pop:4.97,Ice Cream:4.88".split(",").map(x=>x.split(":")),sl=n=>n.toLowerCase().replace(/[^a-z0-9]/g,"");
+const D={me:{id:1,username:"demo",balance:2500,spent:0,admin:true,cur:"GRAM",usd:.942,fee:0,lang:"ru"},nid:200};
+const UP=new Set();D.l=DF.map(([n,x],i)=>{const num=37+i*53%700;let p=+(x*(1+(i*7%30)/100)).toPrecision(x<10?3:4);while(UP.has(p))p=+(p+.01).toFixed(2);UP.add(p);return{id:i+1,owner:2,slug:sl(n),num,title:n+" #"+num,image:"",model:["Neon","Royal","Mint","Onyx","Amber","Frost"][i%6],backdrop:["Copper","Rose","Lavender","Steel","Jade","Sand"][(i*5)%6],price:p}});
+D.i=[["Toy Bear",412],["Heart Locket",88],["Snoop Dogg",9],["Plush Pepe",1203]].map(([n,num],i)=>({id:100+i,owner:1,slug:sl(n),num,title:n+" #"+num,image:"",model:["Lime","Cobalt","Ruby","Gold"][i],backdrop:["Steel","Jade","Copper","Rose"][i],status:"own",price:null}));
+function demo(p,b){const m=p.match(/\/(\d+)$/),id=m&&+m[1],H=(k)=>{throw k};
+ if(p=="/api/me")return D.me;if(p=="/api/floors")return DF.map(([n,x])=>({slug:sl(n),name:n,floor:+x}));
+ if(p=="/api/listings")return D.l.slice().reverse();if(p=="/api/inventory")return{items:[...D.i,...D.l.filter(l=>l.owner==1)].sort((a,c)=>c.id-a.id)};
+ if(p.startsWith("/api/buy/")){const l=D.l.find(x=>x.id==id);if(!l)H("Лот уже продан или снят");if(D.me.balance<l.price)H("Недостаточно средств на балансе");D.me.balance-=l.price;D.me.spent+=l.price;D.l=D.l.filter(x=>x!=l);D.i.push({...l,id:D.nid++,owner:1,status:"own",price:null});return{ok:1}}
+ if(p.startsWith("/api/sell/")){const g=D.i.find(x=>x.id==id),x=F[g.slug]?.floor||0;if(!(b.price>0))H("Укажите цену");if(b.price<x*.3)H("Цена слишком низкая, флор коллекции "+x+" GRAM");D.i=D.i.filter(z=>z!=g);D.l.push({...g,owner:1,status:"sale",price:b.price});return{ok:1}}
+ if(p.startsWith("/api/unsell/")){const l=D.l.find(x=>x.id==id);D.l=D.l.filter(x=>x!=l);D.i.push({...l,status:"own",price:null});return{ok:1}}
+ if(p.startsWith("/api/giftout/")){D.i.find(x=>x.id==id).status="out";return{ok:1}}
+ if(p=="/api/deposit"){D.me.balance+=b.amount;return{link:""}}
+ if(p=="/api/withdraw"){if(b.amount<=0||b.amount>D.me.balance)H("Недостаточно средств");D.me.balance-=b.amount;return{id:1}}
+ if(p=="/api/lang"){D.me.lang=b.lang;return{ok:1}}
+ if(p=="/api/admin")return{stats:{users:3,listings:D.l.length},out:[],withdrawals:[],sync:{items:0,models:0}};return{ok:1}}
+async function api(p,b){if(DEMO)return demo(p,b);const r=await fetch(API+p,{method:b?"POST":"GET",headers:{"Content-Type":"application/json","X-Init":tg.initData},body:b?JSON.stringify(b):undefined});const j=await r.json().catch(()=>({}));if(!r.ok)throw(typeof j.detail==="string"?j.detail:"Ошибка запроса");return j}
+function toast(x){const d=document.createElement("div");d.className="toast";d.textContent=x;document.body.append(d);setTimeout(()=>d.remove(),2600)}
+function openSh(h){$("pn").innerHTML=h;$("sh").classList.add("on")}function closeSh(){$("sh").classList.remove("on")}
+const setLg=m=>{const c=m.lang||(tg.initDataUnsafe?.user?.language_code||"").slice(0,2);lg=LG.includes(c)?c:"ru";document.documentElement.lang=lg};
+const T0=Date.now();
+async function boot(){try{await document.fonts.ready}catch(e){}pg(35);
+ try{[me,F]=await Promise.all([api("/api/me"),api("/api/floors")]);F=Object.fromEntries(F.map(x=>[x.slug,x]));cur=me.cur||"GRAM";setLg(me);pg(70);await go("market");pg(100)}
+ catch(e){v(`<div class="empty"><h2>${t("Откройте через бота")}</h2><p>${t("Мини-апп работает только внутри Telegram.")}</p></div>`)}
+ setTimeout(()=>{$("sp").classList.add("gone");setTimeout(()=>$("sp").remove(),450)},Math.max(350,1900-(Date.now()-T0)))}
+async function go(x){tab=x||tab;closeSh();me=await api("/api/me");$("bal").textContent=f(me.balance)+" "+cur;
+ const T=[["market","Маркет"],["inv","Инвентарь"],["me","Профиль"]];if(me.admin)T.push(["admin","Админ"]);
+ $("nav").innerHTML=T.map(x=>`<button class="${tab==x[0]?"on":""}" onclick="go('${x[0]}')">${t(x[1])}</button>`).join("");
+ try{await({market,inv,me:profile,admin})[tab]()}catch(e){toast(e)}scrollTo(0,0)}
+async function market(){v(`<input id="q" class="in" placeholder="${t("Коллекция, модель, фон")}" oninput="fq()"><div class="seg">${[["new","Новые"],["asc","Дешевле"],["desc","Дороже"],["flr","Ниже рынка"]].map(s=>`<button class="${sort==s[0]?"on":""}" onclick="sort='${s[0]}';market()">${t(s[1])}</button>`).join("")}</div><div id="g"><div class="grid"><div class="sk"></div><div class="sk"></div><div class="sk"></div><div class="sk"></div></div></div>`);
+ LST=await api("/api/listings");ANIM=1;fq();ANIM=0}
+const sb=g=>esc([g.model,g.backdrop].filter(Boolean).join(", "));
+function fq(){const s=($("q")?.value||"").toLowerCase();let L=LST.filter(l=>(l.title+" "+(l.model||"")+" "+(l.backdrop||"")).toLowerCase().includes(s));
+ const d=l=>l.price/(fl(l)||l.price);L.sort(sort=="asc"?(a,b)=>a.price-b.price:sort=="desc"?(a,b)=>b.price-a.price:sort=="flr"?(a,b)=>d(a)-d(b):(a,b)=>b.id-a.id);
+ $("g").innerHTML=L.length?`<div class="grid">${L.map((l,i)=>`<button class="t${ANIM?" in":""}" style="animation-delay:${Math.min(i,10)*50}ms" onclick="lot(${l.id})"><div class="im">${im(l)}</div><div class="bd"><div class="nm">${esc(l.title)}</div><div class="sb">${sb(l)}</div><div class="pr"><span>${f(l.price)} ${cur}<em>${usd(l.price)} USDT</em></span>${dl(l)}</div></div></button>`).join("")}</div>`:emp("Ничего не найдено","Измените запрос или сортировку.")}
+const attrs=g=>[["Модель",g.model],["Фон",g.backdrop],["Символ",g.symbol]].filter(a=>a[1]).map(a=>`<div class="row"><span>${t(a[0])}</span><b>${esc(a[1])}</b></div>`).join("");
+const both=n=>`${f(n)} ${cur} <span class="sub">${usd(n)} USDT</span>`;
+const hd=g=>`<div class="big">${im(g)}</div><h2 style="text-align:center;margin:0 0 12px">${esc(g.title)}</h2>`;
+function lot(id){const l=LST.find(x=>x.id==id);if(!l)return;const mine=l.owner==me.id,short=me.balance<l.price;
+ openSh(`${hd(l)}<div class="card">${attrs(l)}<div class="row"><span>${t("Цена")}</span><b>${both(l.price)}</b></div><div class="row"><span>${t("Ваш баланс")}</span><b>${both(me.balance)}</b></div></div>
+ ${mine?`<button class="btn g" onclick="unsell(${l.id})">${t("Снять с продажи")}</button>`:short?`<button class="btn" onclick="go('me')">${t("Пополнить баланс")}</button>`:`<button class="btn" id="bb" onclick="buy(${l.id})">${t("Купить за")} ${f(l.price)} ${cur}</button>`}`)}
+async function buy(id){const l=LST.find(x=>x.id==id);$("bb").disabled=true;try{await api("/api/buy/"+id,{});tg.HapticFeedback?.notificationOccurred("success");closeSh();celebrate(l);toast(t("Куплено. Подарок в вашем инвентаре"));tab="inv";setTimeout(go,950)}catch(e){toast(e);$("bb").disabled=false}}
+async function inv(){INV=(await api("/api/inventory")).items;const S={own:"У вас",sale:"В продаже",out:"Вывод"};
+ v(`<h2>${t("Инвентарь")}</h2>`+(INV.length?`<div class="grid">${INV.map(g=>`<button class="t" onclick="mine(${g.id})"><div class="im">${im(g)}</div><div class="bd"><div class="nm">${esc(g.title)}</div><div class="sb">${sb(g)}</div><div class="pr"><span class="tag ${g.status=="sale"?"a":""}">${t(S[g.status])}</span>${g.status=="sale"?`<span>${f(g.price)}</span>`:""}</div></div></button>`).join("")}</div>`:emp("Здесь пока пусто","Подарки, которые вы отправили на маркет или купили, появятся здесь.")))}
+function mine(id){const g=INV.find(x=>x.id==id),x=fl(g),at=attrs(g);
+ const body=g.status=="own"?`<h3>${t("Цена в")} ${cur}</h3><input id="pp" class="in" type="number" inputmode="decimal" step="any" value="${x||""}" oninput="rc()"><p style="margin:-4px 0 2px">${t("Рыночная цена")}: ${both(x)}</p><p id="rc" style="margin:0 0 14px"></p><button class="btn" onclick="sell(${g.id})">${t("Выставить на продажу")}</button><button class="lk" onclick="gout(${g.id})">${t("Вывести подарок")}</button>`
+ :g.status=="sale"?`<div class="card"><div class="row"><span>${t("Цена")}</span><b>${both(g.price)}</b></div></div><button class="btn g" onclick="unsell(${g.id})">${t("Снять с продажи")}</button>`:`<p style="text-align:center">${t("Заявка на вывод создана")}</p>`;
+ openSh(`${hd(g)}${at?`<div class="card">${at}</div>`:""}${body}`);if(g.status=="own")rc()}
+function rc(){const p=+$("pp").value||0,fe=me.fee||0;$("rc").textContent=p?`${t("Вы получите")} ${f(p*(1-fe))} ${cur} (${usd(p*(1-fe))} USDT)`+(fe?`, ${t("после комиссии")} ${Math.round(fe*100)}%`:""):""}
+async function sell(id){try{await api("/api/sell/"+id,{price:+$("pp").value});toast(t("Выставлено в маркет"));go()}catch(e){toast(e)}}
+async function unsell(id){try{await api("/api/unsell/"+id,{});toast(t("Снято с продажи"));go()}catch(e){toast(e)}}
+async function gout(id){try{await api("/api/giftout/"+id,{});toast(t("Заявка на вывод создана"));go()}catch(e){toast(e)}}
+async function profile(){v(`<h2>@${esc(me.username||me.id)}</h2><div class="card"><div class="row"><span>${t("Баланс")}</span><b>${both(me.balance)}</b></div><div class="row"><span>${t("Потрачено")}</span><b>${both(me.spent)}</b></div><div class="row"><span>${t("Язык")}</span><div class="lg">${[["ru","ru"],["en","eng"],["kk","kk"],["uk","uk"],["zh","zh"]].map(x=>`<button class="${lg==x[0]?"on":""}" onclick="setl('${x[0]}')">${x[1]}</button>`).join("")}</div></div></div>
+ <div class="card"><h3>${t("Пополнить")}</h3><p style="margin-bottom:10px">${t("Откроется Tonkeeper, зачисление придёт автоматически.")}</p><input id="a" class="in" type="number" inputmode="decimal" value="5"><button class="btn" onclick="dep()">${t("Пополнить")}</button></div>
+ <div class="card"><h3>${t("Вывести средства")}</h3><p style="margin-bottom:10px">${t("Оставьте заявку, выплата придёт на указанные реквизиты.")}</p><input id="wa" class="in" type="number" inputmode="decimal" placeholder="${t("Сумма")}, ${cur}"><input id="wd" class="in" placeholder="${t("Кошелёк или карта")}"><button class="btn g" onclick="wd()">${t("Оставить заявку")}</button></div>`)}
+async function setl(l){lg=l;try{await api("/api/lang",{lang:l})}catch(e){}go()}
+async function dep(){try{const r=await api("/api/deposit",{amount:+$("a").value});if(r.link)tg.openLink(r.link);else go()}catch(e){toast(e)}}
+async function wd(){try{await api("/api/withdraw",{amount:+$("wa").value,details:$("wd").value});toast(t("Заявка на вывод создана"));go()}catch(e){toast(e)}}
 const act=async(p,b)=>{try{await api(p,b||{});go()}catch(e){toast(e)}};
-const ap=i=>act("/api/admin/listing/"+i),dl=i=>act("/api/admin/del/"+i),pd=i=>act("/api/admin/withdraw/"+i),clr=()=>act("/api/admin/clear");
-const seed=()=>act("/api/admin/seed",{kinds:$("ks").value.split(",").map(x=>x.trim()).filter(Boolean),count:+$("n").value,pmin:+$("p1").value,pmax:+$("p2").value});
-async function models(){const L=await api("/api/models");v(`<div class="chips"><div class="chip" onclick="go('market')">← ${t("market")}</div></div>`+(L.length?`<div class="grid">${L.map(m=>`<div class="gift pop"><div class="im"><img src="${pic(m.file)}" onerror="this.src=PH" loading="lazy" alt=""></div><b>${esc(m.name||"?")}</b><small>${esc(CN[m.slug]||m.slug)}</small></div>`).join("")}</div>`:`<div class="empty"><div class="e">🎨</div><h2>${t("empty")}</h2></div>`))}
-go();
+async function admin(){const a=await api("/api/admin"),s=a.stats;
+ v(`<h2>Админ</h2><div class="card"><h3>Выдать подарок в инвентарь</h3><p style="margin-bottom:10px">Когда подарок пришёл на аккаунт маркета.</p><input id="cu" class="in" placeholder="@username или ID"><input id="cc" class="in" list="cl" placeholder="Коллекция"><datalist id="cl">${Object.values(F).map(x=>`<option value="${esc(x.name)}">`).join("")}</datalist><input id="cn" class="in" type="number" placeholder="Номер подарка"><button class="btn" onclick="crd()">Выдать</button></div>
+ <div class="card"><h3>Заявки на вывод подарков</h3>${a.out.map(o=>`<div class="row"><span>#${o.id} ${esc(o.title)}<br>${o.owner}</span><button class="btn s" onclick="act('/api/admin/gift/${o.id}')">Передан</button></div>`).join("")||"<p>Нет заявок</p>"}</div>
+ <div class="card"><h3>Заявки на вывод средств</h3>${a.withdrawals.map(w=>`<div class="row"><span>#${w.id} ${f(w.amount)} ${cur}<br>${esc(w.details)}</span><button class="btn s" onclick="act('/api/admin/withdraw/${w.id}')">Выплачено</button></div>`).join("")||"<p>Нет заявок</p>"}</div>
+ <div class="card"><h3>Тестовые лоты по флору</h3><p style="margin-bottom:10px">Каждый лот из другой коллекции, цена от флора до +30%, цены не повторяются. Коллекции через запятую, пусто значит все.</p><input id="ks" class="in" placeholder="Plush Pepe, Toy Bear"><input id="n" class="in" type="number" value="60"><button class="btn" onclick="act('/api/admin/seed',{kinds:$('ks').value.split(',').map(x=>x.trim()).filter(Boolean),count:+$('n').value})">Создать</button><div style="height:8px"></div><button class="btn g" onclick="act('/api/admin/clear')">Убрать мои лоты из маркета</button></div>
+ <div class="card"><h3>Картинки с Fragment</h3><p style="margin-bottom:10px">В базе ${a.sync.items} подарков, ${a.sync.models} моделей${a.sync.running?`. Загрузка ${a.sync.done}/${a.sync.total}`:""}</p><input id="sp2" class="in" type="number" value="10"><button class="btn g" onclick="act('/api/admin/sync',{per:+$('sp2').value||10})">Скачать</button></div>
+ <div class="card"><h3>Статистика</h3>${Object.entries(s).map(([k,x])=>`<div class="row"><span>${k}</span><b>${+(+x).toFixed(2)}</b></div>`).join("")}</div>`)}
+const crd=()=>act("/api/admin/credit",{user:$("cu").value,collection:$("cc").value,num:+$("cn").value});
+fly();boot();
 </script></body></html>
